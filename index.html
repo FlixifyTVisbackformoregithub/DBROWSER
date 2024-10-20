@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Search Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Dbrowser - Search Engine</h1>
+        <form action="/search" method="post" id="search-form">
+            <input type="text" name="query" placeholder="Search the web..." required autocomplete="off">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if results %}
+            <h2>Search Results for "{{ query }}"</h2>
+            <ul>
+            {% for result in results %}
+                <li>
+                    <h3><a href="{{ result['title'] }}">{{ result['title'] }}</a></h3>
+                    <p>{{ result['content'] }}</p>
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
